@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+name: Compile ANGIE
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - ubuntu:18.04
+          - ubuntu:20.04
+          - ubuntu:22.04
+          - debian:10
+          - debian:11
+          - debian:12
+        angie_ver:
+          - STABLE
+        install_type:
+          - LIGHT
+          - FULL
+        ssl:
+          - SYSTEM
+          - OPENSSL
+          - LIBRESSL
+        exclude:
+          # So we exclude these
+          - install_type: FULL
+            ssl: OPENSSL
+          - install_type: FULL
+            ssl: LIBRESSL
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build ANGIE in Docker
+        run: docker build . --file .github/workflows/docker/Dockerfile --build-arg ANGIE_VER=${{ matrix.angie_ver }} --build-arg BASE_IMAGE=${{ matrix.os }} --build-arg INSTALL_TYPE=${{ matrix.install_type }} --build-arg SSL=${{ matrix.ssl }}

@@ -1,0 +1,15 @@
+/var/log/angie/*.log {
+        weekly
+        missingok
+        rotate 52
+        compress
+        delaycompress
+        notifempty
+        create 640 www-data adm
+        sharedscripts
+        postrotate
+                if [ -f /var/run/angie.pid ]; then
+                        kill -USR1 `cat /var/run/angie.pid`
+                fi
+        endscript
+}

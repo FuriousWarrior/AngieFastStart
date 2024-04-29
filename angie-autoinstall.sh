@@ -267,8 +267,8 @@ case $OPTION in
 		make
 		make install
 		mkdir -p /etc/angie/modsec/
-		wget -P /etc/angie/modsec/ https://raw.githubusercontent.com/FuriousWarrior/NginxFastStart/master/conf/main.conf
-		wget -P /etc/angie/modsec/ https://raw.githubusercontent.com/FuriousWarrior/NginxFastStart/master/conf/modsecurity.conf
+		wget -P /etc/angie/modsec/ https://raw.githubusercontent.com/FuriousWarrior/NginxFastStart/main/conf/main.conf
+		wget -P /etc/angie/modsec/ https://raw.githubusercontent.com/FuriousWarrior/NginxFastStart/main/conf/modsecurity.conf
 
 		# Enable ModSecurity in Nginx
 		if [[ $MODSEC_ENABLE == 'y' ]]; then
@@ -292,7 +292,7 @@ case $OPTION in
 	if [[ ! -e /etc/nginx/nginx.conf ]]; then
 		mkdir -p /etc/nginx
 		cd /etc/nginx || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/conf/angie.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/angie.conf
 	fi
 	cd /usr/local/src/angie/angie-${ANGIE_VER} || exit 1
 
@@ -429,14 +429,14 @@ case $OPTION in
 	# angie installation from source does not add an init script for systemd and logrotate
 	if [[ ! -e /lib/systemd/system/angie.service ]]; then
 		cd /lib/systemd/system/ || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/conf/nginx.service
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/nginx.service
 		# Enable angie start at boot
 		systemctl enable angie
 	fi
 
 	if [[ ! -e /etc/logrotate.d/angie ]]; then
 		cd /etc/logrotate.d/ || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/conf/nginx-logrotate -O angie
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/nginx-logrotate -O angie
 	fi
 
 	# angie's cache directory is not created by default
@@ -463,48 +463,48 @@ case $OPTION in
 
 	if [[ ! -e /etc/angie/ssl/ssl.conf ]]; then
 		cd /etc/angie/ssl || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/conf/ssl.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/ssl.conf
 	fi
 
 	if [[ ! -e /etc/angie/global/security.conf ]]; then
 		cd /etc/angie/global || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/conf/security.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/security.conf
 	fi
 
 	if [[ ! -e /etc/angie/global/global.conf ]]; then
 		cd /etc/angie/global || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/global/global.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/global/global.conf
 	fi
 
 	if [[ ! -e /etc/angie/global/proxy.conf ]]; then
 		cd /etc/angie/global || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/global/proxy.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/global/proxy.conf
 	fi
 
 	if [[ ! -e /etc/angie/global/php_fastcgi.conf ]]; then
 		cd /etc/angie/global || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/global/php_fastcgi.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/global/php_fastcgi.conf
 	fi
 
 	if [[ ! -e /etc/angie/global/python_uwsgi.conf ]]; then
 		cd /etc/angie/global || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/global/python_uwsgi.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/global/python_uwsgi.conf
 	fi
 
 	# Example Configs
 	if [[ ! -e /etc/angie/sites-available/example.com.conf ]]; then
 		cd /etc/angie/sites-available || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/sites-available/example.com.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/sites-available/example.com.conf
 	fi
 
 	if [[ ! -e /etc/angie/sites-available/example.django.com.conf ]]; then
 		cd /etc/angie/sites-available || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/sites-available/example.django.com.conf 
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/sites-available/example.django.com.conf 
 	fi
 
 	if [[ ! -e /etc/angie/sites-available/example.php.com.conf ]]; then
 		cd /etc/angie/sites-available || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/sites-available/example.php.com.conf
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/sites-available/example.php.com.conf
 	fi
 
 	# Restart Nginx
@@ -537,7 +537,7 @@ case $OPTION in
 	exit
 	;;
 3) # Update the script
-	wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/angie-autoinstall.sh -O angie-autoinstall.sh
+	wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/angie-autoinstall.sh -O angie-autoinstall.sh
 	chmod +x angie-autoinstall.sh
 	echo ""
 	echo "Update done."

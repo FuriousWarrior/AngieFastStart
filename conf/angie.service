@@ -1,27 +1,15 @@
-# Stop dance for angie
-# =======================
-#
-# ExecStop sends SIGSTOP (graceful stop) to the angie process.
-# If, after 5s (--retry QUIT/5) angie is still running, systemd takes control
-# and sends SIGTERM (fast shutdown) to the main process.
-# After another 5s (TimeoutStopSec=5), and if ngiangienx is alive, systemd sends
-# SIGKILL to all the remaining processes in the process group (KillMode=mixed).
-#
-#
 [Unit]
-Description=A high performance web server and a reverse proxy server
-After=network.target nss-lookup.target
+Description=Angie - high performance web server
+Documentation=https://angie.software/en/
+After=network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
 
 [Service]
 Type=forking
 PIDFile=/run/angie.pid
-ExecStartPre=/usr/sbin/angie -t -q -g 'daemon on; master_process on;'
-ExecStart=/usr/sbin/angie -g 'daemon on; master_process on;'
-ExecStartPost=/bin/sleep 0.1
-ExecReload=/usr/sbin/angie -g 'daemon on; master_process on;' -s reload
-ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/angie.pid
-TimeoutStopSec=5
-KillMode=mixed
+ExecStart=/usr/sbin/angie -c /etc/angie/angie.conf
+ExecReload=/bin/sh -c "/bin/kill -s HUP $(/bin/cat /run/angie.pid)"
+ExecStop=/bin/sh -c "/bin/kill -s TERM $(/bin/cat /run/angie.pid)"
 
 [Install]
 WantedBy=multi-user.target

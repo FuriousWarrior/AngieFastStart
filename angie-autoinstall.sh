@@ -429,14 +429,14 @@ case $OPTION in
 	# angie installation from source does not add an init script for systemd and logrotate
 	if [[ ! -e /lib/systemd/system/angie.service ]]; then
 		cd /lib/systemd/system/ || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/nginx.service
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/angie.service
 		# Enable angie start at boot
 		systemctl enable angie
 	fi
 
 	if [[ ! -e /etc/logrotate.d/angie ]]; then
 		cd /etc/logrotate.d/ || exit 1
-		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/nginx-logrotate -O angie
+		wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/conf/angie-logrotate -O angie
 	fi
 
 	# angie's cache directory is not created by default

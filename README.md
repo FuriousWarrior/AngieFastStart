@@ -13,9 +13,9 @@ Compile Angie with custom modules on latest Debian and Ubuntu
 * Latest mainline or stable version, from source
 * Optional modules (see below)
 * Removed useless modules
-* [Custom angie.conf](https://github.com/FuriousWarrior/AngieFastStart/blob/master/conf/angie.conf) (default does not work)
-* [Init script for systemd](https://github.com/FuriousWarrior/AngieFastStart/blob/master/conf/angie.service) (not provided by default)
-* [Logrotate conf](https://github.com/FuriousWarrior/AngieFastStart/blob/master/conf/angie-logrotate) (not provided by default)
+* [Custom angie.conf](https://github.com/FuriousWarrior/AngieFastStart/blob/main/conf/angie.conf) (default does not work)
+* [Init script for systemd](https://github.com/FuriousWarrior/AngieFastStart/blob/main/conf/angie.service) (not provided by default)
+* [Logrotate conf](https://github.com/FuriousWarrior/AngieFastStart/blob/main/conf/angie-logrotate) (not provided by default)
 * Block Angie installation from APT using pinning, to prevent conflicts
 
 ### Optional modules/features
@@ -39,12 +39,12 @@ Compile Angie with custom modules on latest Debian and Ubuntu
 Just download and execute the script :
 
 ```sh
-wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/master/angie-autoinstall.sh
+wget https://raw.githubusercontent.com/FuriousWarrior/AngieFastStart/main/angie-autoinstall.sh
 chmod +x angie-autoinstall.sh
 ./angie-autoinstall.sh
 ```
 
-You can check [configuration examples](https://github.com/FuriousWarrior/AngieFastStart/tree/master/conf) for the custom modules.
+You can check [configuration examples](https://github.com/FuriousWarrior/AngieFastStart/tree/main/conf) for the custom modules.
 
 ## Uninstall Angie
 

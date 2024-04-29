@@ -516,6 +516,33 @@ case $OPTION in
 		echo -e 'Package: angie*\nPin: release *\nPin-Priority: -1' >angie-block
 	fi
 
+	# Removing temporary Nginx and modules files
+	rm -r /usr/local/src/angie
+
+	# We're done !
+	echo "Installation done."
+	exit
+	;;
+2) # Uninstall Angie
+	if [[ $HEADLESS != "y" ]]; then
+		while [[ $RM_CONF != "y" && $RM_CONF != "n" ]]; do
+			read -rp "       Remove configuration files ? [y/n]: " -e RM_CONF
+		done
+		while [[ $RM_LOGS != "y" && $RM_LOGS != "n" ]]; do
+			read -rp "       Remove logs files ? [y/n]: " -e RM_LOGS
+		done
+	fi
+	# Stop Angie
+	systemctl stop angie
+
+	# Removing Angie files and modules files
+	rm -r /usr/local/src/angie \
+		/usr/sbin/angie* \
+		/etc/logrotate.d/angie \
+		/var/cache/angie \
+		/lib/systemd/system/angie.service \
+		/etc/systemd/system/multi-user.target.wants/angie.service
+
 	# Remove conf files
 	if [[ $RM_CONF == 'y' ]]; then
 		rm -r /etc/angie/
@@ -531,7 +558,7 @@ case $OPTION in
 		rm /etc/apt/preferences.d/angie-block
 	fi
 
-	# We're done !
+	# done 
 	echo "Uninstallation done."
 
 	exit

@@ -285,7 +285,7 @@ case $OPTION in
 	# Download and extract of Angie source code  1.5.0.tar.gz
 	cd /usr/local/src/angie/ || exit 1
 	wget -qO- https://download.angie.software/files/angie-${ANGIE_VER}.tar.gz | tar zxf -
-	cd nginx-${ANGIE_VER} || exit 1
+	cd angie-${ANGIE_VER} || exit 1
 
 	# As the default angie.conf does not work, we download a clean and working conf from my GitHub.
 	# We do it only if it does not already exist, so that it is not overriten if Nginx is being updated
